@@ -24,7 +24,8 @@
     <script type="text/javascript">
         var urlSearchParams = new URLSearchParams(window.location.search);
 
-        var getURL = urlSearchParams.get('get') || '';  // No usar decodeURI aquí
+        // Usamos atob() para decodificar la URL que está en Base64
+        var getURL = atob(urlSearchParams.get('get')) || '';
         var getLang = urlSearchParams.get('lang') || '';
         var getIMG = urlSearchParams.get('img') || '';
         var getKEY = urlSearchParams.get('key') || '';
@@ -43,7 +44,7 @@
                 "sources": [{
                     "default": true,
                     "type": "dash",
-                    "file": getURL,  // Usar la URL tal como está, sin decodificar
+                    "file": getURL,  // Usar la URL decodificada con atob()
                     "drm": {
                         "clearkey": {
                             "keyId": getKEY,
